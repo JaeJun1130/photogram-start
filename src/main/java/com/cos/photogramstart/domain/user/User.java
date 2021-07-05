@@ -1,6 +1,7 @@
 package com.cos.photogramstart.domain.user;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -8,6 +9,7 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 //JPA
+@Builder
 @AllArgsConstructor //필드값을 모두 포함한 생성자를 자동 생성해준다.
 @NoArgsConstructor  //기본생성자
 @Data
