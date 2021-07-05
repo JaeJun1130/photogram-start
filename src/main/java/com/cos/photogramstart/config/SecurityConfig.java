@@ -14,10 +14,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();              //CSRF 비활성화 (default 값 true)
         http.authorizeRequests()
             .antMatchers("/", "/user/**", "/image/**", "/subscribe/**","/comment/**").authenticated() //해당 url은 인증이 필요
-                .anyRequest().permitAll()   //그게 아닌 요청은 허용하겠다.
-                .and()                      //그리
-                .formLogin()                //로그인 페이지
-                .loginPage("/auth/signin")  //해당 url
-                .defaultSuccessUrl("/");    //성공하면 / url로
+            .anyRequest().permitAll()   //그게 아닌 요청은 허용하겠다.
+            .and()                      //그리
+            .formLogin()                //로그인 페이지
+            .loginPage("/auth/signin")  //해당 url
+            .defaultSuccessUrl("/");    //성공하면 / url로
     }
 }
