@@ -19,6 +19,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY) //DB 번호 증가를 따라간다.
     private int id;
 
+    @Column(length = 20, unique = true)
     private String username;
     private String password;
 

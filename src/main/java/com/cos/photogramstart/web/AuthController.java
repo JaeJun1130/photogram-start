@@ -30,6 +30,7 @@ public class AuthController {
      */
     @GetMapping("/auth/signin")
     public String signinPage() {
+
         return "auth/signin";
     }
 
@@ -50,7 +51,7 @@ public class AuthController {
     public String signup(SignupDto signupDto) {
         log.info("signupDto : {}",signupDto.toString());
 
-        User user = signupDto.toEntity();
+        User user = signupDto.toEntity(); //사용자가 요청한 값을 Vo로 받은후 Build를 통해 Entity에 셋팅.
         log.info("user : {} ",user.toString());
 
         //Jpa 인설트
