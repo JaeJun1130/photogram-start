@@ -5,15 +5,20 @@ import lombok.Data;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @Data //GET,SET
 public class SignupDto {
-    @Max(20)
+    @Size(min = 2, max = 20)
     private String username;
+
     @NotBlank
+    @Size(min = 2, max = 20)
     private String password;
+
     @NotBlank
     private String email;
+
     @NotBlank
     private String name;
 
