@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
         integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+
+    <!-- 제이쿼리 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -24,10 +27,10 @@
                         <h1><img src="/images/logo.jpg" alt=""></h1>
                         
                         <!--로그인 인풋-->
-                        <form class="login__input" >
+                        <form class="login__input">
                             <input type="text" name="username" placeholder="유저네임" required="required" />
                             <input type="password" name="password" placeholder="비밀번호" required="required" />
-                            <button>로그인</button>
+                            <button onclick="formSubmit('s');">로그인</button>
                         </form>
                         <!--로그인 인풋end-->
                         
@@ -61,5 +64,11 @@
         
     </div>
 </body>
-
+<script>
+    function formSubmit(type) {
+        if(type === 's'){
+            $('.login__input').attr("method","POST").attr("action","/auth/signin").submit();
+        }
+    }
+</script>
 </html>

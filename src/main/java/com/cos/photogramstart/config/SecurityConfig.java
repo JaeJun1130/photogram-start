@@ -22,10 +22,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();              //CSRF 비활성화 (default 값 true)
         http.authorizeRequests()
             .antMatchers("/", "/user/**", "/image/**", "/subscribe/**","/comment/**").authenticated() //해당 url은 인증이 필요
-            .anyRequest().permitAll()   //그게 아닌 요청은 허용하겠다.
-            .and()                      //그리고
-            .formLogin()                //로그인 페이지
-            .loginPage("/auth/signin")  //해당 url
-            .defaultSuccessUrl("/");    //성공하면 / url로
+            .anyRequest().permitAll()               //그게 아닌 요청은 허용하겠다.
+            .and()                                  //그리고
+            .formLogin()                            //로그인 페이지
+            .loginPage("/auth/signin")              //해당 url Get방식으로 요청
+            .loginProcessingUrl("/auth/signin")     //해당 URL 으로 POST 요청이 들어오면 시큐리티가 캐치함
+            .defaultSuccessUrl("/");                //성공하면 / url로
     }
 }
