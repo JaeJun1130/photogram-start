@@ -33,7 +33,7 @@
                             <button onclick="formSubmit('s');">로그인</button>
                         </form>
                         <!--로그인 인풋end-->
-                        
+
                         <!-- 또는 -->
                         <div class="login__horizon">
                             <div class="br"></div>

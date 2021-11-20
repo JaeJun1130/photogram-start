@@ -19,7 +19,9 @@ public class PrinciPalDetails implements UserDetails {
         this.user = user;
     }
 
-    //권한은 여러개 가지고 있을 수 있기때문에 콜렉션 타입
+    //권한은 여러개 가지고 있을 수 있기때문에 콜렉션 타입을 사용
+    //<? extends GrantedAuthority> GrantedAuthority 를 상속하고 있는 ? 타입
+    //ArrayList 는 Collection
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Collection<GrantedAuthority> collector = new ArrayList<>();
