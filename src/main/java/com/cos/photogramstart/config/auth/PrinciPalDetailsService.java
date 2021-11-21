@@ -30,7 +30,6 @@ public class PrinciPalDetailsService implements UserDetailsService { //loginProc
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User byUsername = userRepository.findByUsername(username);
-        log.info("###userName### : {}",username);
         if(byUsername==null){
             return null;
         }else{
