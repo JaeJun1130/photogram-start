@@ -71,7 +71,7 @@
 				<div class="content-item__09">
 					<div class="item__title">전회번호</div>
 					<div class="item__input">
-						<input type="text" name="tel" placeholder="전화번호" value="${principal.user.phone}" />
+						<input type="text" name="phone" placeholder="전화번호" value="${principal.user.phone}" />
 					</div>
 				</div>
 				<div class="content-item__10">
@@ -85,7 +85,7 @@
 				<div class="content-item__11">
 					<div class="item__title"></div>
 					<div class="item__input">
-						<button>제출</button>
+						<button type="button" onclick="promisAjax(${principal.user.id},event)">제출</button>
 					</div>
 				</div>
 				<!--제출버튼end-->
