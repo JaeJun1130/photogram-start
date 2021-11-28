@@ -24,11 +24,11 @@
 			<!--프로필셋팅 아이디영역end-->
 
 			<!--프로필 수정-->
-			<form id="profileUpdate">
+			<form id="profileUpdate" method="POST" onsubmit="promisAjax(${principal.user.id},event);">
 				<div class="content-item__02">
 					<div class="item__title">이름</div>
 					<div class="item__input">
-						<input type="text" name="name" placeholder="이름" value="${principal.user.name}" />
+						<input type="text" name="name" placeholder="이름" value="${principal.user.name}" required="required"/>
 					</div>
 				</div>
 				<div class="content-item__03">
@@ -40,7 +40,7 @@
 				<div class="content-item__04">
 					<div class="item__title">패스워드</div>
 					<div class="item__input">
-						<input type="password" name="password" placeholder="패스워드"  />
+						<input type="password" name="password" placeholder="패스워드" required="required"/>
 					</div>
 				</div>
 				<div class="content-item__05">
@@ -85,7 +85,8 @@
 				<div class="content-item__11">
 					<div class="item__title"></div>
 					<div class="item__input">
-						<button type="button" onclick="promisAjax(${principal.user.id},event)">제출</button>
+<%--						<button type="button" onclick="promisAjax(${principal.user.id},event)">제출</button>--%>
+							<button>제출</button>
 					</div>
 				</div>
 				<!--제출버튼end-->

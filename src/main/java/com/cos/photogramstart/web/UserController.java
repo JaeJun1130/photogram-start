@@ -38,7 +38,6 @@ public class UserController {
         
         // 2. @AuthenticationPrincipal
         String username = princiPalDetails.getUsername();
-        System.out.println("username = " + username);
 
         model.addAttribute("principal", princiPalDetails.getUser());
 
