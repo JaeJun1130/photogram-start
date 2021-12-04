@@ -41,7 +41,8 @@ public class Subscribe {
     private int id;
 
     @JoinColumn(name = "fromUserId")    //컬럼이름지정
-    @Many te User fromUser;
+    @ManyToOne
+    private User fromUser;
 
     @JoinColumn(name = "toUserId")
     @ManyToOne
