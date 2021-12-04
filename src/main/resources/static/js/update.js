@@ -34,6 +34,10 @@ function promisAjax(userId,e) {
         })
         .catch((error)=>{
             console.log(error);
-            alert(JSON.stringify(error.responseJSON.data))
+            if(error.data == null){
+                alert(JSON.stringify(error.responseJSON.message))
+            }else{
+                alert(JSON.stringify(error.responseJSON.data))
+            }
         })
 }
