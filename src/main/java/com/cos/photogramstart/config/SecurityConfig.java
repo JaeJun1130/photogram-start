@@ -21,7 +21,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //        super.configure(http); 삭제시 기존 시큐리티가 가지고있는 설정이 초기화됨
             http.csrf().disable();              //CSRF 비활성화 (default 값 true)
             http.authorizeRequests()
-            .antMatchers("/", "/user/**", "/image/**", "/subscribe/**","/comment/**").authenticated() //해당 url은 인증이 필요
+            .antMatchers("/", "/user/**", "/image/**", "/subscribe/**","/comment/**","/api/**").authenticated() //해당 url은 인증이 필요
             .anyRequest().permitAll()               //그게 아닌 요청은 허용하겠다.
             .and()                                  //그리고
             .formLogin()                            //로그인 페이지

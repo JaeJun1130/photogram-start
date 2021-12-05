@@ -17,7 +17,7 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class UserController {
     /**
-     * 사용자 정
+     * 사용자 정보
      * @param id
      * @return
      */

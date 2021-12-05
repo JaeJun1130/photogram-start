@@ -31,6 +31,7 @@ public class PrinciPalDetailsService implements UserDetailsService { //loginProc
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User byUsername = userRepository.findByUsername(username);
         if(byUsername==null){
+            System.out.println("가입 되지 않아있는 회원 Exception 처리필요");
             return null;
         }else{
             return new PrinciPalDetails(byUsername);
