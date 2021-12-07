@@ -1,10 +1,10 @@
 package com.cos.photogramstart.web;
 
 import com.cos.photogramstart.config.auth.PrinciPalDetails;
+import com.cos.photogramstart.handler.ex.CustomValidationException;
 import com.cos.photogramstart.service.ImageService;
 import com.cos.photogramstart.web.dto.image.ImageUploadDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -47,6 +47,9 @@ public class ImageController {
 
     @PostMapping("/image")
     public String imageUpload(ImageUploadDto imageUploadDto, @AuthenticationPrincipal PrinciPalDetails princiPalDetails){
+        if(imageUploadDto.getFile().isEmpty()){
+            throw new CustomValidationException("이미지를 첨부해주세요.",null);
+        }
         //서비스 호출
         imageService.사진업로드(imageUploadDto,princiPalDetails);
         return "redirect:/user/"+princiPalDetails.getUser().getId();

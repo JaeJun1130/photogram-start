@@ -34,6 +34,7 @@ public class ImageService {
         }catch (Exception e){
             e.printStackTrace();
         }
+        imageRepository.save(imageUploadDto.imageEntity(imageFileName,PrinciPalDetails.getUser()));
     }
 
 }
