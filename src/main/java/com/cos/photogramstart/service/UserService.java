@@ -1,7 +1,11 @@
 package com.cos.photogramstart.service;
 
+import com.cos.photogramstart.domain.image.Image;
+import com.cos.photogramstart.domain.image.ImageRepository;
 import com.cos.photogramstart.domain.user.User;
 import com.cos.photogramstart.domain.user.UserRepository;
+import com.cos.photogramstart.handler.ex.CustomApiException;
+import com.cos.photogramstart.handler.ex.CustomException;
 import com.cos.photogramstart.handler.ex.CustomValidationApiException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -16,6 +20,15 @@ import java.util.function.Supplier;
 public class UserService {
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final ImageRepository imageRepository;
+
+    public User userProfile(int usrId){
+        User userEntity = userRepository.findById(usrId).orElseThrow(()->{
+            throw new CustomException("해당 프로필은 없는 프로필 입니다.");
+        });
+
+        return userEntity;
+    }
 
     @Transactional
     public User userUpdate(int userId, User user) {
