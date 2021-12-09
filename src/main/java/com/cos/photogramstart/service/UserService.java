@@ -12,6 +12,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.function.Supplier;
 
@@ -26,6 +27,8 @@ public class UserService {
         User userEntity = userRepository.findById(usrId).orElseThrow(()->{
             throw new CustomException("해당 프로필은 없는 프로필 입니다.");
         });
+        System.out.println("userEntity = " + userEntity);
+        List<Image> images = userEntity.getImages();
 
         return userEntity;
     }

@@ -1,10 +1,7 @@
 package com.cos.photogramstart.domain.image;
 
 import com.cos.photogramstart.domain.user.User;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -13,7 +10,8 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor //필드값을 모두 포함한 생성자를 자동 생성해준다.
 @NoArgsConstructor  //기본생성자
-@Data
+@Setter
+@Getter
 @Entity
 public class Image {
     @Id

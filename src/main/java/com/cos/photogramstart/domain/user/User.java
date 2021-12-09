@@ -1,20 +1,19 @@
 package com.cos.photogramstart.domain.user;
 
 import com.cos.photogramstart.domain.image.Image;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 //JPA
 @Builder
 @AllArgsConstructor //필드값을 모두 포함한 생성자를 자동 생성해준다.
 @NoArgsConstructor  //기본생성자
-@Data
+@Setter
+@Getter
 @Entity             //JPA에서는 엔티티는 테이블에 대응하는 하나의 클래스
 public class User {
     @Id
@@ -50,8 +49,12 @@ public class User {
 
     //외래 키가 있는 곳을 주인으로 정해라. @JoinColumn이 있는 쪽.
     //주인이 아닌쪽은 읽기만 가능
+
+    //실무에서는 다 LAZY로 쓰자. 즉시 로딩 사용하지 말자.
+
+    //양방향 참조시 @Data, @toString 사용하면 서로 무한참조에 걸려서 스택오버플로우 걸린다(주의)
     @OneToMany(mappedBy = "user",fetch = FetchType.LAZY)
-    private List<Image> images;
+    private List<Image> images = new ArrayList<Image>();
 
     @PrePersist //디비의 insert 되기전에 실행.
     public void createDate() {
