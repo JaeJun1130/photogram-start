@@ -28,7 +28,7 @@ public class UserService {
             throw new CustomException("해당 프로필은 없는 프로필 입니다.");
         });
         System.out.println("userEntity = " + userEntity);
-        List<Image> images = userEntity.getImages();
+//        List<Image> images = userEntity.getImages();
 
         return userEntity;
     }
