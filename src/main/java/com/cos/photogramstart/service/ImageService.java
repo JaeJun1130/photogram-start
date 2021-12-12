@@ -6,6 +6,7 @@ import com.cos.photogramstart.web.dto.image.ImageUploadDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.File;
 import java.nio.file.Files;
@@ -21,6 +22,7 @@ public class ImageService {
     @Value("${file.path}")
     private String uploadFolder;
 
+    @Transactional 
     public void 사진업로드(ImageUploadDto imageUploadDto,PrinciPalDetails PrinciPalDetails){
         UUID uuid = UUID.randomUUID();  //유일성보장이지만 진짜 매우 작은 확률로 중복될수가 있는지만 거의 유일함
         String imageFileName = uuid + "_" + imageUploadDto.getFile().getOriginalFilename();

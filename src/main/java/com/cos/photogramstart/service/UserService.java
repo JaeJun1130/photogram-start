@@ -21,8 +21,10 @@ import java.util.function.Supplier;
 public class UserService {
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
-    private final ImageRepository imageRepository;
 
+    //영속성 컨텍스트가 변경이 됐는지 감지하고 있지 않음 (더티체크안함)
+    //영속성 컨텍스트가 조금더 일을 하지않아도 됨
+    @Transactional(readOnly = true)
     public User userProfile(int usrId){
         User userEntity = userRepository.findById(usrId).orElseThrow(()->{
             throw new CustomException("해당 프로필은 없는 프로필 입니다.");
