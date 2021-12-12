@@ -25,13 +25,19 @@
         <div class="profile-right">
             <div class="name-group">
                 <h2>${userProfileDto.user.name}</h2>
-
                 <c:choose>
-                    <c:when test="{userProfileDto.pageOwnerStatus}">
-                        <button class="cta" onclick="toggleSubscribe(this)">구독하기</button>
+                    <c:when test="${userProfileDto.pageOwnerStatus}">
+                        <button class="cta" onclick="location.href='/image/upload'">사진등록</button>
                     </c:when>
                     <c:otherwise>
-                        <button class="cta" onclick="location.href='/image/upload'">사진등록</button>
+                        <c:choose>
+                            <c:when test="${userProfileDto.subScribeStatus}">
+                                <button class="cta blue" onclick="toggleSubscribe(this)">구독취소</button>
+                            </c:when>
+                            <c:otherwise>
+                                <button class="cta" onclick="toggleSubscribe(this)">구독하기</button>
+                            </c:otherwise>
+                        </c:choose>
                     </c:otherwise>
                 </c:choose>
 
@@ -44,7 +50,8 @@
                 <ul>
                     <li><a href=""> 게시물<span>${user.images.size()}</span>
                     </a></li>
-                    <li><a href="javascript:subscribeInfoModalOpen();"> 구독정보<span>2</span>
+                    <li><a href="javascript:subscribeInfoModalOpen();">
+                        구독정보<span>${userProfileDto.subScribeCount}</span>
                     </a></li>
                 </ul>
             </div>

@@ -17,7 +17,8 @@ public class UserController {
     private final UserService userService;
 
     /**
-     * 사용자 프로필지 페이지
+     * 사용자 프로필 페이지
+     *
      * @param id
      * @return
      */
@@ -30,7 +31,7 @@ public class UserController {
     }
 
     /**
-     * 사용자 프로필 상세 페이
+     * 사용자 프로필 상세 페이지
      * @param id
      * @param princiPalDetails
      * @param model

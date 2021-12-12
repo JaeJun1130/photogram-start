@@ -2,6 +2,7 @@ package com.cos.photogramstart.service;
 
 import com.cos.photogramstart.domain.image.Image;
 import com.cos.photogramstart.domain.image.ImageRepository;
+import com.cos.photogramstart.domain.subscribe.SubscribeRepository;
 import com.cos.photogramstart.domain.user.User;
 import com.cos.photogramstart.domain.user.UserRepository;
 import com.cos.photogramstart.handler.ex.CustomApiException;
@@ -21,20 +22,29 @@ import java.util.function.Supplier;
 @Service
 public class UserService {
     private final UserRepository userRepository;
+    private final SubscribeRepository subscribeRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     //영속성 컨텍스트가 변경이 됐는지 감지하고 있지 않음 (더티체크안함)
     //영속성 컨텍스트가 조금더 일을 하지않아도 됨
     @Transactional(readOnly = true)
-    public UserProfileDto userProfile(int pageUserId,int userId){
+    public UserProfileDto userProfile(int pageUserId,int userId) {
         UserProfileDto userProfileDto = new UserProfileDto();
 
-        User userEntity = userRepository.findById(pageUserId).orElseThrow(()->{
+        User userEntity = userRepository.findById(pageUserId).orElseThrow(() -> {
             throw new CustomException("해당 프로필은 없는 프로필 입니다.");
         });
+
         userProfileDto.setUser(userEntity);
-        userProfileDto.setPageOwnerStatus(pageUserId == userId ? 1 : -1); //해당사용자면 1 아니면 -1
+        userProfileDto.setPageOwnerStatus(pageUserId == userId); //해당사용자면 1 아니면 -1
         userProfileDto.setImageCount(userEntity.getImages().size());
+
+        int subscribeStatus = subscribeRepository.mSubscribeStatus(userId, pageUserId);
+        int subscribeCount = subscribeRepository.mSubscribeCount(pageUserId);
+
+        userProfileDto.setSubScribeStatus(subscribeStatus == 1);
+        userProfileDto.setSubScribeCount(subscribeCount);
+
         return userProfileDto;
     }
 
