@@ -7,6 +7,7 @@ import com.cos.photogramstart.domain.user.UserRepository;
 import com.cos.photogramstart.handler.ex.CustomApiException;
 import com.cos.photogramstart.handler.ex.CustomException;
 import com.cos.photogramstart.handler.ex.CustomValidationApiException;
+import com.cos.photogramstart.web.dto.user.UserProfileDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -25,14 +26,16 @@ public class UserService {
     //영속성 컨텍스트가 변경이 됐는지 감지하고 있지 않음 (더티체크안함)
     //영속성 컨텍스트가 조금더 일을 하지않아도 됨
     @Transactional(readOnly = true)
-    public User userProfile(int usrId){
-        User userEntity = userRepository.findById(usrId).orElseThrow(()->{
+    public UserProfileDto userProfile(int pageUserId,int userId){
+        UserProfileDto userProfileDto = new UserProfileDto();
+
+        User userEntity = userRepository.findById(pageUserId).orElseThrow(()->{
             throw new CustomException("해당 프로필은 없는 프로필 입니다.");
         });
-        System.out.println("userEntity = " + userEntity);
-//        List<Image> images = userEntity.getImages();
-
-        return userEntity;
+        userProfileDto.setUser(userEntity);
+        userProfileDto.setPageOwnerStatus(pageUserId == userId ? 1 : -1); //해당사용자면 1 아니면 -1
+        userProfileDto.setImageCount(userEntity.getImages().size());
+        return userProfileDto;
     }
 
     @Transactional

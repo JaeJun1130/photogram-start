@@ -10,8 +10,8 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor //필드값을 모두 포함한 생성자를 자동 생성해준다.
 @NoArgsConstructor  //기본생성자
-@Setter
 @Getter
+@Setter
 @Entity
 public class Image {
     @Id

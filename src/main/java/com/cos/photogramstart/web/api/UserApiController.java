@@ -41,6 +41,6 @@ public class UserApiController {
         User userEntity = userService.userUpdate(userId, userUpdateDto.toEntity());
         princiPalDetails.setUser(userEntity); //session 정보 수정
 
-        return new CMResDto<>(1,"회원수정완료",userEntity );
+        return new CMResDto<>(1,"회원수정완료",userEntity ); //JPA 연관관계 때문에 무한 참조가 일어남 @JsonIgnoreProperties 사용
     }
 }
