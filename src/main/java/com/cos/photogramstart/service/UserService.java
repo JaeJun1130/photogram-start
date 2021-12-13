@@ -57,7 +57,7 @@ public class UserService {
 
         //Supplier
         User userEntity = userRepository.findById(userId).orElseThrow(() -> {
-            return new CustomValidationApiException("존재하지 않는 회원입니다");
+            throw new CustomValidationApiException("존재하지 않는 회원입니다");
         });
 
         
