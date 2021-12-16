@@ -1,5 +1,6 @@
 package com.cos.photogramstart.web.dto.user;
 
+import com.cos.photogramstart.domain.subscribe.Subscribe;
 import com.cos.photogramstart.domain.user.User;
 import lombok.*;
 
@@ -17,4 +18,5 @@ public class UserProfileDto {
     private int subScribeCount;         //구독자 수
 
     private User user;
+    private Subscribe subscribe;
 }

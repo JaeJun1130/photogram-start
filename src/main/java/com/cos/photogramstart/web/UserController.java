@@ -19,7 +19,7 @@ public class UserController {
     /**
      * 사용자 프로필 페이지
      *
-     * @param id
+     * @param
      * @return
      */
     @GetMapping("/user/{pageUserId}")

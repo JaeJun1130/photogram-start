@@ -54,4 +54,8 @@ public class Subscribe {
     public void createDate() {
         this.createDate = LocalDateTime.now();
     }
+
+    public boolean haveSubscriber() {
+        return toUser != null;
+    }
 }
