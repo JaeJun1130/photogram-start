@@ -42,7 +42,7 @@ public class SubscribeService {
         StringBuffer sb = new StringBuffer();
         sb.append("SELECT U.id, U.username, U.profileImageUrl, ");
         sb.append("if((SELECT 1 from Subscribe WHERE fromUserId = ? and toUserId = U.id),1,0) as subscribeStatus, ");
-        sb.append("if((? = S.id),1,0) as equalsUserStatus ");
+        sb.append("if((? = U.id),1,0) as equalsUserStatus ");
         sb.append("FROM User U ");
         sb.append("INNER JOIN Subscribe S on S.toUserId = U.id ");
         sb.append("WHERE ");
