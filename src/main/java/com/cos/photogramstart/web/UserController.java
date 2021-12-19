@@ -1,7 +1,6 @@
 package com.cos.photogramstart.web;
 
 import com.cos.photogramstart.config.auth.PrinciPalDetails;
-import com.cos.photogramstart.domain.user.User;
 import com.cos.photogramstart.service.UserService;
 import com.cos.photogramstart.web.dto.user.UserProfileDto;
 import lombok.RequiredArgsConstructor;

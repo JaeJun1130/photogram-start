@@ -18,5 +18,4 @@ public class UserProfileDto {
     private int subScribeCount;         //구독자 수
 
     private User user;
-    private Subscribe subscribe;
 }

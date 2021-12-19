@@ -16,15 +16,29 @@ import org.springframework.web.bind.annotation.RestController;
 public class SubscribeApiController {
     private final SubscribeService subscribeService;
 
+    /**
+     * 해당 유저 구독하기
+     *
+     * @param princiPalDetails
+     * @param toUserId
+     * @return
+     */
     @PostMapping("/api/subscribe/{toUserId}")
-    public ResponseEntity<?> subscribe(@AuthenticationPrincipal PrinciPalDetails princiPalDetails, @PathVariable int toUserId){
-        subscribeService.구독(princiPalDetails.getUser().getId(),toUserId);
-        return new ResponseEntity<>(new CMResDto<>(1,"구독성공",null), HttpStatus.OK);
+    public ResponseEntity<?> subscribe(@AuthenticationPrincipal PrinciPalDetails princiPalDetails, @PathVariable int toUserId) {
+        subscribeService.mSubscribe(princiPalDetails.getUser().getId(), toUserId);
+        return new ResponseEntity<>(new CMResDto<>(1, "구독성공", null), HttpStatus.OK);
     }
 
+    /**
+     * 해당 유저 구독취소
+     *
+     * @param princiPalDetails
+     * @param toUserId
+     * @return
+     */
     @PostMapping("/api/unSubscribe/{toUserId}")
-    public ResponseEntity<?> unSubscribe(@AuthenticationPrincipal PrinciPalDetails princiPalDetails, @PathVariable int toUserId){
-        subscribeService.구독취소(princiPalDetails.getUser().getId(),toUserId);
-        return new ResponseEntity<>(new CMResDto<>(1,"구독취소성공",null), HttpStatus.OK);
+    public ResponseEntity<?> unSubscribe(@AuthenticationPrincipal PrinciPalDetails princiPalDetails, @PathVariable int toUserId) {
+        subscribeService.mUnSubscribe(princiPalDetails.getUser().getId(), toUserId);
+        return new ResponseEntity<>(new CMResDto<>(1, "구독취소성공", null), HttpStatus.OK);
     }
 }

@@ -42,16 +42,48 @@ function toggleSubscribe(toUserId, obj) {
 		});
 	}
 }
-
 // (2) 구독자 정보  모달 보기
-function subscribeInfoModalOpen() {
-	$(".modal-subscribe").css("display", "flex");
+function subscribeInfoModalOpen(pageUserId) {
+	$.ajax({
+		url: `/api/user/${pageUserId}/subscribe`,
+		type: "POST",
+		dataType: "json"
+	}).done(res => {
+		let data = res.data;
+		data.forEach(data => {
+			let item = getSubscribeModalItem(data)
+			$("#subscribeModalList").append(item);
+		});
 
-	$(".subscribe__text").val("asd");
+	}).fail(error => {
+		alert("error");
+	});
+	$(".modal-subscribe").css("display", "flex");
 }
 
-function getSubscribeModalItem() {
+function getSubscribeModalItem(data) {
+	let item = `<div class="subscribe__item" id="subscribeModalItem-1">
+					<div class="subscribe__img">
+						<img src="/upload/${data.profileImageUrl}" onerror="this.src='/images/person.jpeg'"/>
+					</div>
+	
+					<div class="subscribe__text">
+						<h2>${data.username}</h2>
+					</div>
+					
+					<div class="subscribe__btn">`;
+	if (!data.equalsUserStatus) { //동일유저가 아닐때 버튼이 만들어 져야함
+		if (data.subscribeStatus) {// 구독한 상태
+			item += `<button className="cta blue" onClick="toggleSubscribeModal(this)">구독취소</button>`;
+		} else {//구독하지 않은 상태
+			item += `<button className="cta" onClick="toggleSubscribeModal(this)">구독하</button>`;
+		}
+	}
+	item += `;	
+					</div>
+        		</div>`;
 
+	return item;
 }
 
 

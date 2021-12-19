@@ -37,21 +37,29 @@ public class ImageController {
 
     /**
      * 인기 게시물
+     *
      * @return
      */
     @GetMapping("/image/upload")
-    public String upload(){
+    public String upload() {
 
         return "/image/upload";
     }
 
+    /**
+     * 스토리 이미지 업로드
+     *
+     * @param imageUploadDto
+     * @param princiPalDetails
+     * @return
+     */
     @PostMapping("/image")
-    public String imageUpload(ImageUploadDto imageUploadDto, @AuthenticationPrincipal PrinciPalDetails princiPalDetails){
-        if(imageUploadDto.getFile().isEmpty()){
-            throw new CustomValidationException("이미지를 첨부해주세요.",null);
+    public String imageUpload(ImageUploadDto imageUploadDto, @AuthenticationPrincipal PrinciPalDetails princiPalDetails) {
+        if (imageUploadDto.getFile().isEmpty()) {
+            throw new CustomValidationException("이미지를 첨부해주세요.", null);
         }
         //서비스 호출
-        imageService.사진업로드(imageUploadDto,princiPalDetails);
-        return "redirect:/user/"+princiPalDetails.getUser().getId();
+        imageService.imgUpload(imageUploadDto, princiPalDetails);
+        return "redirect:/user/" + princiPalDetails.getUser().getId();
     }
 }

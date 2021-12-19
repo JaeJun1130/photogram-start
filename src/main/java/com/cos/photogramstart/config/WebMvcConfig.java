@@ -2,9 +2,12 @@ package com.cos.photogramstart.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.resource.PathResourceResolver;
+
+import java.util.List;
 
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {                         //web 설정
@@ -18,5 +21,15 @@ public class WebMvcConfig implements WebMvcConfigurer {                         
                 .setCachePeriod(6 * 10 * 6)                                //캐쉬 시간
                 .resourceChain(true)                        //true 면 발동
                 .addResolver(new PathResourceResolver());                 //등록
+    }
+
+    @Override
+    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+
+    }
+
+    @Override
+    public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
+
     }
 }
