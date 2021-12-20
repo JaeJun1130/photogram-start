@@ -1,6 +1,7 @@
 package com.cos.photogramstart.domain.image;
 
 import com.cos.photogramstart.domain.user.User;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import javax.persistence.*;
@@ -21,7 +22,8 @@ public class Image {
     private String caption;
     private String postImageUrl;    //사진을 전송받아서 그사진을 서버에 특정폴더에 저장 - 그 경로를 인서트함
 
-    @JoinColumn(name="userId")
+    @JsonIgnoreProperties({"images"}) //user 에서 images 가 호출되면 안된다.
+    @JoinColumn(name = "userId")
     @ManyToOne
     private User user; // 1 : N
     //이미지 좋아요

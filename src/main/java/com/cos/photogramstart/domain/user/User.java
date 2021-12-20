@@ -54,8 +54,8 @@ public class User {
     //실무에서는 다 LAZY로 쓰자. 즉시 로딩 사용하지 말자.
 
     //양방향 참조시 @Data, @toString 사용하면 서로 무한참조에 걸려서 스택오버플로우 걸린다(주의)
-    @OneToMany(mappedBy = "user",fetch = FetchType.LAZY)
-    @JsonIgnoreProperties({"user"}) //Image 에서 user가 호출되면 안된다.
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    @JsonIgnoreProperties({"user"}) //Image 에 user가 호출되면 안된다.
     private List<Image> images = new ArrayList<Image>();
 
     @PrePersist //디비의 insert 되기전에 실행.

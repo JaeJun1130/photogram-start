@@ -1,6 +1,7 @@
 package com.cos.photogramstart.service;
 
 import com.cos.photogramstart.config.auth.PrinciPalDetails;
+import com.cos.photogramstart.domain.image.Image;
 import com.cos.photogramstart.domain.image.ImageRepository;
 import com.cos.photogramstart.web.dto.image.ImageUploadDto;
 import lombok.RequiredArgsConstructor;
@@ -12,6 +13,7 @@ import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.UUID;
 
 @RequiredArgsConstructor
@@ -36,7 +38,12 @@ public class ImageService {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        imageRepository.save(imageUploadDto.imageEntity(imageFileName,PrinciPalDetails.getUser()));
+        imageRepository.save(imageUploadDto.imageEntity(imageFileName, PrinciPalDetails.getUser()));
+    }
+
+    @Transactional(readOnly = true)
+    public List<Image> imageStory(int principalId) {
+        return imageRepository.mStory(principalId);
     }
 
 }
