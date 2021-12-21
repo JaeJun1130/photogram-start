@@ -6,10 +6,11 @@ import com.cos.photogramstart.domain.image.ImageRepository;
 import com.cos.photogramstart.web.dto.image.ImageUploadDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -42,8 +43,8 @@ public class ImageService {
     }
 
     @Transactional(readOnly = true)
-    public List<Image> imageStory(int principalId) {
-        return imageRepository.mStory(principalId);
+    public Page<Image> imageStory(int principalId, Pageable pageable) {
+        return imageRepository.mStory(principalId, pageable);
     }
 
 }
