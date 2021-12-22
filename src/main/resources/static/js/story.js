@@ -1,17 +1,23 @@
- /**
-  2. 스토리 페이지
-  (1) 스토리 로드하기
-  (2) 스토리 스크롤 페이징하기
-  (3) 좋아요, 안좋아요
-  (4) 댓글쓰기
-  (5) 댓글삭제
-  */
+/**
+ 2. 스토리 페이지
+ (1) 스토리 로드하기
+ (2) 스토리 스크롤 페이징하기
+ (3) 좋아요, 안좋아요
+ (4) 댓글쓰기
+ (5) 댓글삭제
+ */
+let page = 0;
  storyLoad();
 // (1) 스토리 로드하기
 function storyLoad() {
+	let data = {};
+	data.page = page;
+	console.log(data);
 	$.ajax({
 		url: `/api/story`,
-		type: "POST"
+		type: "POST",
+
+		dataType: "JSON"
 	}).done(res => {
 		let data = res.data.content;
 		data.forEach((image) => {
@@ -78,7 +84,17 @@ function storyLoad() {
 
 // (2) 스토리 스크롤 페이징하기
 $(window).scroll(() => {
+	//console.log("윈도우 scrollTop",$(window).scrollTop());
+	//console.log("문서의 높이",$(document).height());
+	//console.log("윈도우 높이",$(window).height());
 
+	let checkNum = $(window).scrollTop() - ($(document).height() - $(window).height());
+	console.log(checkNum);
+
+	if (checkNum < 1 && checkNum > -1) {
+		page++;
+		storyLoad();
+	}
 });
 
 

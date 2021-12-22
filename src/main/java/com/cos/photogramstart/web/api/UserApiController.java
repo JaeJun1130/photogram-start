@@ -6,6 +6,7 @@ import com.cos.photogramstart.handler.ex.CustomValidationApiException;
 import com.cos.photogramstart.service.SubscribeService;
 import com.cos.photogramstart.service.UserService;
 import com.cos.photogramstart.web.dto.CMResDto;
+import com.cos.photogramstart.web.dto.auth.SignupDto;
 import com.cos.photogramstart.web.dto.subscribe.SubscribeDto;
 import com.cos.photogramstart.web.dto.user.UserUpdateDto;
 import lombok.RequiredArgsConstructor;
@@ -63,11 +64,24 @@ public class UserApiController {
                 errorMap.put(fieldError.getField(), fieldError.getDefaultMessage());
                 System.out.println("fieldError.getDefaultMessage() = " + fieldError.getDefaultMessage());
             }
-            throw new CustomValidationApiException("유효성 검사 실패",errorMap);
+            throw new CustomValidationApiException("유효성 검사 실패", errorMap);
         }
         User userEntity = userService.userUpdate(userId, userUpdateDto.toEntity());
         princiPalDetails.setUser(userEntity); //session 정보 수정
 
-        return new CMResDto<>(1,"회원수정완료",userEntity ); //JPA 연관관계 때문에 무한 참조가 일어남 @JsonIgnoreProperties 사용
+        return new CMResDto<>(1, "회원수정완료", userEntity); //JPA 연관관계 때문에 무한 참조가 일어남 @JsonIgnoreProperties 사용
+    }
+
+
+    @PostMapping("/test/json")
+    public ResponseEntity<?> returnJson() {
+        SignupDto signupDto = SignupDto.builder()
+                .name("홍길동")
+                .username("testUser")
+                .password("1234!@#$")
+                .email("test@test.com")
+                .build();
+
+        return new ResponseEntity<>(signupDto, HttpStatus.OK);
     }
 }
