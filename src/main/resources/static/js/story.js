@@ -10,13 +10,10 @@ let page = 0;
  storyLoad();
 // (1) 스토리 로드하기
 function storyLoad() {
-	let data = {};
-	data.page = page;
-	console.log(data);
 	$.ajax({
 		url: `/api/story`,
 		type: "POST",
-
+		data: {"page": page},
 		dataType: "JSON"
 	}).done(res => {
 		let data = res.data.content;
@@ -82,7 +79,7 @@ function storyLoad() {
 	</div>`;
 }
 
-// (2) 스토리 스크롤 페이징하기
+// (2) 스토리 스크롤 페이징하기c
 $(window).scroll(() => {
 	//console.log("윈도우 scrollTop",$(window).scrollTop());
 	//console.log("문서의 높이",$(document).height());
