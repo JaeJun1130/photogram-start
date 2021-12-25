@@ -5,6 +5,7 @@ import com.cos.photogramstart.domain.user.User;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 //JPA
 @Builder
@@ -38,4 +39,11 @@ public class Likes {
     @JoinColumn(name = "userId")
     @ManyToOne
     private User user;
+
+    private LocalDateTime createDate;
+
+    @PrePersist //디비의 insert 되기전에 실행.
+    public void createDate() {
+        this.createDate = LocalDateTime.now();
+    }
 }

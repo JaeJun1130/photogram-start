@@ -1,11 +1,13 @@
 package com.cos.photogramstart.domain.image;
 
+import com.cos.photogramstart.domain.likes.Likes;
 import com.cos.photogramstart.domain.user.User;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 //JPA
 @Builder
@@ -28,6 +30,11 @@ public class Image {
     private User user; // 1 : N
     //이미지 좋아요
 
+    @OneToMany(mappedBy = "image")
+    private List<Likes> likes;
+
+    @Transient //DB에 칼럼이 만들어지지 않음 
+    private boolean likeState;
     //댓글
 
     private LocalDateTime createDate;

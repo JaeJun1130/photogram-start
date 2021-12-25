@@ -86,8 +86,6 @@ $(window).scroll(() => {
 	//console.log("윈도우 높이",$(window).height());
 
 	let checkNum = $(window).scrollTop() - ($(document).height() - $(window).height());
-	console.log(checkNum);
-
 	if (checkNum < 1 && checkNum > -1) {
 		page++;
 		storyLoad();
