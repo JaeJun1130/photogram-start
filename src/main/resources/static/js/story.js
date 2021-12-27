@@ -28,7 +28,7 @@ function storyLoad() {
 
  function getStoryItem(image) {
 	 console.log(image);
-	 return `
+	 let item = `
 	<div class="story-list__item">
 		<div class="sl__item__header">
 			<div>
@@ -44,8 +44,13 @@ function storyLoad() {
 		<div class="sl__item__contents">
 			<div class="sl__item__contents__icon">
 
-				<button>
-					<i class="fas fa-heart active" id="storyLikeIcon-${image.id}" onClick="toggleLike(${image.id})"></i>
+				<button>`;
+	 if (image.likeState) {
+		 item += `<i class="fas fa-heart active" id="storyLikeIcon-${image.id}" onClick="toggleLike(${image.id})"></i>`
+	 } else {
+		 item += `<i class="fa-heart far" id="storyLikeIcon-${image.id}" onClick="toggleLike(${image.id})"></i>`
+	 }
+	 item += `
 				</button>
 			</div>
 
@@ -77,7 +82,9 @@ function storyLoad() {
 
 		</div>
 	</div>`;
-}
+
+	 return item;
+ }
 
 // (2) 스토리 스크롤 페이징하기c
 $(window).scroll(() => {

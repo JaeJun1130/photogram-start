@@ -26,14 +26,15 @@ public class Image {
 
     @JsonIgnoreProperties({"images"}) //user 에서 images 가 호출되면 안된다.
     @JoinColumn(name = "userId")
-    @ManyToOne
+    @ManyToOne//이미지를 select 하면 조인해서 User의 정보를 같이 들고옴
     private User user; // 1 : N
     //이미지 좋아요
 
     @OneToMany(mappedBy = "image")
+    @JsonIgnoreProperties({"image"}) //likes 에서 image 가 호출되면 안된다.
     private List<Likes> likes;
 
-    @Transient //DB에 칼럼이 만들어지지 않음 
+    @Transient //DB에 칼럼이 만들어지지 않음
     private boolean likeState;
     //댓글
 
