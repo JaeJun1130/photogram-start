@@ -36,6 +36,9 @@ public class Image {
 
     @Transient //DB에 칼럼이 만들어지지 않음
     private boolean likeState;
+
+    @Transient
+    private int likeCount;
     //댓글
 
     private LocalDateTime createDate;

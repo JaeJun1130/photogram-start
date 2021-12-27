@@ -71,17 +71,4 @@ public class UserApiController {
 
         return new CMResDto<>(1, "회원수정완료", userEntity); //JPA 연관관계 때문에 무한 참조가 일어남 @JsonIgnoreProperties 사용
     }
-
-
-    @PostMapping("/test/json")
-    public ResponseEntity<?> returnJson() {
-        SignupDto signupDto = SignupDto.builder()
-                .name("홍길동")
-                .username("testUser")
-                .password("1234!@#$")
-                .email("test@test.com")
-                .build();
-
-        return new ResponseEntity<>(signupDto, HttpStatus.OK);
-    }
 }
