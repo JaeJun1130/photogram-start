@@ -1,14 +1,16 @@
 package com.cos.photogramstart.web.dto.auth;
 
 import com.cos.photogramstart.domain.user.User;
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @Builder
-@Data //GET,SET
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 public class SignupDto {
     @Size(min = 2, max = 20)
     private String username;
