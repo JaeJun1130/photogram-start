@@ -8,7 +8,7 @@
 - Sring Boot DevTools
 - Lombok
 - Spring Data JPA
-- MariaDB Driver
+- MySql Driver
 - Spring Security
 - Spring Web
 - oauth2-client
