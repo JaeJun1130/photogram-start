@@ -37,8 +37,8 @@
 ### 데이터베이스
 
 ```sql
-create user 'cos'@'%' identified by 'cos1234';
-GRANT ALL PRIVILEGES ON *.* TO 'cos'@'%';
+create user 'jaejun'@'%' identified by '';
+GRANT ALL PRIVILEGES ON *.* TO 'jaejun'@'%';
 create database photogram;
 ```
 
