@@ -86,7 +86,7 @@ function storyLoad() {
 	 return item;
  }
 
-// (2) 스토리 스크롤 페이징하기c
+// (2) 스토리 스크롤 페이징하기
 $(window).scroll(() => {
 	//console.log("윈도우 scrollTop",$(window).scrollTop());
 	//console.log("문서의 높이",$(document).height());

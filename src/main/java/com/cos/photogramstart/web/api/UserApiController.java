@@ -17,8 +17,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.mail.Multipart;
 import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
@@ -70,5 +73,13 @@ public class UserApiController {
         princiPalDetails.setUser(userEntity); //session 정보 수정
 
         return new CMResDto<>(1, "회원수정완료", userEntity); //JPA 연관관계 때문에 무한 참조가 일어남 @JsonIgnoreProperties 사용
+    }
+
+    @PutMapping("/api/user/{principalId}/profileImageUrl")
+    public ResponseEntity<?> profileImageUrlUpdate(@PathVariable int principalId, MultipartFile profileImageFile,
+                                                   @AuthenticationPrincipal PrinciPalDetails princiPalDetails) {
+        User userEntity = userService.profileImageUrlUpdate(principalId, profileImageFile);
+        princiPalDetails.setUser(userEntity);
+        return new ResponseEntity<>(new CMResDto<>(1, "프로필사진변경", userEntity), HttpStatus.OK);
     }
 }
