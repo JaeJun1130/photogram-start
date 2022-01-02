@@ -1,14 +1,11 @@
 # 포토그램 - 인스타그램 클론 코딩
 
-### STS 툴에 세팅하기 - 플러그인 설정
-- https://blog.naver.com/getinthere/222322821611
-
 ### 의존성
 
 - Sring Boot DevTools
 - Lombok
 - Spring Data JPA
-- MariaDB Driver
+- MySql Driver
 - Spring Security
 - Spring Web
 - oauth2-client
@@ -37,8 +34,8 @@
 ### 데이터베이스
 
 ```sql
-create user 'cos'@'%' identified by 'cos1234';
-GRANT ALL PRIVILEGES ON *.* TO 'cos'@'%';
+create user 'jaejun'@'%' identified by '';
+GRANT ALL PRIVILEGES ON *.* TO 'jaejun'@'%';
 create database photogram;
 ```
 
@@ -61,7 +58,7 @@ spring:
       
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://localhost:3306/costa?serverTimezone=Asia/Seoul
+    url: jdbc:mysql://localhost:3306/costa?serverTimezone=Asia/Seoul
     username: costa
     password: costa1234
     
