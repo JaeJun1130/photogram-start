@@ -36,7 +36,11 @@ public class CommentService {
     }
 
     @Transactional
-    public Comment commentDelete() {
-        return null;
+    public void commentDelete(int id) {
+        try {
+            commentRepository.deleteById(id);
+        } catch (Exception e) {
+            throw new CustomApiException(e.getMessage());
+        }
     }
 }
