@@ -56,16 +56,6 @@ public class AuthController {
     @PostMapping("/auth/signup")
 //    @ResponseBody
     public String signup(@Valid SignupDto signupDto, BindingResult bindingResult) {
-        //@Valid 에러가 발생시 BindingResult 에러 적재
-        if(bindingResult.hasErrors()){
-            Map<String,String> errorMap = new HashMap<>();
-
-            for(FieldError fieldError : bindingResult.getFieldErrors()){
-                errorMap.put(fieldError.getField(),fieldError.getDefaultMessage());
-                System.out.println("fieldError.getDefaultMessage() = " + fieldError.getDefaultMessage());
-            }
-            throw new CustomValidationException("유효성 검사 실패",errorMap);
-        }else {
             User user = signupDto.toEntity(); //사용자가 요청한 값을 Vo로 받은후 Build를 통해 Entity에 셋팅.
             log.info("user : {} ", user.toString());
 
@@ -73,6 +63,5 @@ public class AuthController {
             User userEntity = authService.회원가입(user);
             System.out.println(userEntity);
             return "auth/signin";
-        }
     }
 }

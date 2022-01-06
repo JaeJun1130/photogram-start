@@ -60,15 +60,7 @@ public class UserApiController {
                               @Valid UserUpdateDto userUpdateDto,
                               BindingResult bindingResult, //꼭 vaild 밑에 적어줘야 동작함
                               @AuthenticationPrincipal PrinciPalDetails princiPalDetails) {
-        if (bindingResult.hasErrors()) {
-            Map<String, String> errorMap = new HashMap<>();
 
-            for (FieldError fieldError : bindingResult.getFieldErrors()) {
-                errorMap.put(fieldError.getField(), fieldError.getDefaultMessage());
-                System.out.println("fieldError.getDefaultMessage() = " + fieldError.getDefaultMessage());
-            }
-            throw new CustomValidationApiException("유효성 검사 실패", errorMap);
-        }
         User userEntity = userService.userUpdate(userId, userUpdateDto.toEntity());
         princiPalDetails.setUser(userEntity); //session 정보 수정
 
