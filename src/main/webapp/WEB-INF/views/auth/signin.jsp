@@ -34,24 +34,25 @@
                         </form>
                         <!--로그인 인풋end-->
 
-                        <!-- 또는 -->
-                        <div class="login__horizon">
-                            <div class="br"></div>
-                            <div class="or">또는</div>
-                            <div class="br"></div>
-                        </div>
-                        <!-- 또는end -->
-                        
-                        <!-- Oauth 소셜로그인 -->
-                        <div class="login__facebook">
-                            <button>
-                                <i class="fab fa-facebook-square"></i>
-                                <span>Facebook으로 로그인</span>
-                            </button>
-                        </div>
-                        <!-- Oauth 소셜로그인end -->
-                    </div>
-                    
+                       <!-- 또는 -->
+                       <div class="login__horizon">
+                           <div class="br"></div>
+                           <div class="or">또는</div>
+                           <div class="br"></div>
+                       </div>
+                       <!-- 또는end -->
+
+                       <!-- Oauth 소셜로그인 -->
+                       <div class="login__facebook">
+                           <%--                            oauth2/authorization/ 까지는 고정 그뒤에는 yml에 설정해놓은 로그인방식--%>
+                           <button onclick="facebookLogin()">
+                               <i class="fab fa-facebook-square"></i>
+                               <span>Facebook으로 로그인</span>
+                           </button>
+                       </div>
+                       <!-- Oauth 소셜로그인end -->
+                   </div>
+
                     <!--계정이 없으신가요?-->
                     <div class="login__register">
                         <span>계정이 없으신가요?</span>
@@ -61,14 +62,18 @@
                 </article>
             </section>
         </main>
-        
+
     </div>
 </body>
 <script>
     function formSubmit(type) {
-        if(type === 's'){
-            $('.login__input').attr("method","POST").attr("action","/auth/signin").submit();
+        if (type === 's') {
+            $('.login__input').attr("method", "POST").attr("action", "/auth/signin").submit();
         }
+    }
+
+    function facebookLogin() {
+        location.href = "/oauth2/authorization/facebook";
     }
 </script>
 </html>

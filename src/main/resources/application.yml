@@ -43,5 +43,14 @@ spring:
       name: test
       password: 1234
 
+    oauth2:
+      client:
+        registration:
+          facebook:
+            client-id: 4494031917374706
+            client-secret: 9be7810762cfe82e92cb6b091ca97d4d
+            scope:
+              - public_profile
+              - email
 file:
   path: /Users/jeonjaejun/IdeaProjects/photogram/upload/
